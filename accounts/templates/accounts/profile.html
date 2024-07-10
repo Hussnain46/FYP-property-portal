@@ -1,0 +1,86 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<style>
+    /* Reset default margin and padding */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Styling for the full-page profile card container */
+    .profile-card {
+        width: 100%;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Profile card header */
+    .profile-card-header {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+        text-align: center;
+    }
+
+    .profile-card-header h1 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Profile info section */
+    .profile-info {
+        padding: 20px 0;
+    }
+
+    .profile-info p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .profile-info strong {
+        font-weight: bold;
+        margin-right: 10px;
+        color: #555;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .profile-card {
+            padding: 20px;
+        }
+
+        .profile-card-header h1 {
+            font-size: 28px;
+        }
+
+        .profile-info p {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<div class="profile-card">
+    <div class="profile-card-header">
+        <h1>{{ user.username }}'s Profile</h1>
+    </div>
+
+    <div class="profile-info">
+        <p><strong>Name:</strong> {{ user.get_full_name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Phone Number:</strong> {{ user.profile.phone_number }}</p>
+        <p><strong>Role:</strong> {% if user.is_buyer %}Buyer{% else %}Seller{% endif %}</p>
+        <!-- Add more profile details as needed -->
+    </div>
+</div>
+{% endblock %}

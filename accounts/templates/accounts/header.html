@@ -1,0 +1,33 @@
+<header>
+    {% load static %}
+    <div class="container">
+        <div class="logo">
+            <a href="{% url 'buyer_dashboard' %}">
+                <img src="{% static 'img/logo1.png' %}" alt="Logo">
+            </a>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="{% url 'buyer_dashboard' %}">Home</a></li>
+                <li><a href="{% url 'search_listings' %}" class="search-button">Search</a>
+                </li>
+                <!-- <li><a href="#">Rent</a></li> -->
+                <li>
+                    <a href="{% url 'seller_dashboard' %}" id="sell-button"
+                       {% if user.is_authenticated and not user.is_seller %}data-buyer{% endif %}>Sell</a>
+                </li>
+                <!-- <li><a href="#">Agents</a></li> -->
+                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                {% if user.is_authenticated %}
+                    
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    
+</header>
